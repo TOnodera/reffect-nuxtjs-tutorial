@@ -9,12 +9,12 @@
 <script>
 import axios from 'axios';
 export default {
-    async asyncData({ params }) {
-        const { data } = await axios.get(
-            `https://jsonplaceholder.typicode.com/posts/${params.postId}`
+    async asyncData(context) {
+        const post = await context.$axios.$get(
+            `https://jsonplaceholder.typicode.com/posts/${context.params.postId}`
         );
         return {
-            post: data,
+            post: post,
         };
     },
     head() {
