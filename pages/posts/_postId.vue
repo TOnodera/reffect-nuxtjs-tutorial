@@ -9,26 +9,18 @@
 <script>
 import axios from 'axios';
 export default {
-    asyncData() {
+    async asyncData({ params }) {
+        const { data } = await axios.get(
+            `https://jsonplaceholder.typicode.com/posts/${params.postId}`
+        );
         return {
-            title: '個別ページ',
+            post: data,
         };
     },
     head() {
         return {
-            title: this.title,
+            title: this.post.title,
         };
-    },
-    data() {
-        return {
-            post: {},
-        };
-    },
-    async mounted() {
-        const response = await axios.get(
-            `https://jsonplaceholder.typicode.com/posts/${this.$route.params.postId}`
-        );
-        this.post = response.data;
     },
 };
 </script>
