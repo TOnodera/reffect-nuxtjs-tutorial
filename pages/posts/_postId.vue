@@ -9,9 +9,14 @@
 <script>
 import axios from 'axios';
 export default {
+    asyncData() {
+        return {
+            title: '個別ページ',
+        };
+    },
     head() {
         return {
-            title: this.post.title,
+            title: this.title,
         };
     },
     data() {
